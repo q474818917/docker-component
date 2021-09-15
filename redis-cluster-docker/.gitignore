@@ -1,0 +1,8 @@
+.idea
+.DS_Store
+.env
+nohup.out
+www/*
+!www/localhost/
+logs/*
+./data/*
