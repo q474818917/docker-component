@@ -8,3 +8,4 @@
 - mongo(一个mongo，一个mongo-express)
 - redis(6个node，3个master，3个slave)
 - elasticsearch(3个node)
+- eureka(3个peer node)

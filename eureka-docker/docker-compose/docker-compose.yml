@@ -1,0 +1,29 @@
+version: '2'
+services:
+    cluster-1:
+        image: cluster-eureka
+        restart: always
+        container_name: cluster-1
+        ports:
+            - "8081:8080"
+        environment:
+            HOSTNAME: cluster-1
+            SERVICEURLS: http://cluster-2:8080/eureka,http://cluster-3:8080/eureka
+    cluster-2:
+        image: cluster-eureka
+        restart: always
+        container_name: cluster-2
+        ports:
+            - "8082:8080"
+        environment:
+            HOSTNAME: cluster-2
+            SERVICEURLS: http://cluster-1:8080/eureka,http://cluster-3:8080/eureka
+    cluster-3:
+        image: cluster-eureka
+        restart: always
+        container_name: cluster-3
+        ports:
+            - "8083:8080"
+        environment:
+            HOSTNAME: cluster-3
+            SERVICEURLS: http://cluster-2:8080/eureka,http://cluster-1:8080/eureka
