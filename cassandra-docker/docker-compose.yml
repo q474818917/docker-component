@@ -1,0 +1,31 @@
+version: '2'
+services:
+  cassandra1:
+    image: cassandra:4.1
+    ports:
+      - 7000:7000     # storage_port
+      - 9042:9042     # native_transport_port
+      - 7001:7001     # ssl_storage_port
+      - 9160:9160     # rpc_port
+    networks: 
+      - cassandra-docker_default
+    volumes:
+      - /data/docker/cassandra1:/var/lib/cassandra
+  
+  cassandra2:
+    image: cassandra:4.1
+    ports:
+      - 8000:7000     # storage_port
+      - 9043:9042     # native_transport_port
+      - 7002:7001     # ssl_storage_port
+      - 9161:9160     # rpc_port
+    networks:
+      - cassandra-docker_default
+    volumes:
+      - /data/docker/cassandra2:/var/lib/cassandra
+    environment:
+      - CASSANDRA_SEEDS:cassandra1
+
+networks:
+  cassandra-docker_default:
+    external: true
